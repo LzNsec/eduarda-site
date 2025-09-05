@@ -6,7 +6,7 @@
   <title>Para Eduarda 💖</title>
   <style>
     * {margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
-    body {background: linear-gradient(135deg, #ff9a9e, #fad0c4); color:#333; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; text-align:center;}
+    body {background: linear-gradient(135deg, #ff9a9e, #fad0c4); color:#333; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; text-align:center; position:relative;}
     .container {background:white; padding:30px; border-radius:20px; max-width:600px; width:100%; box-shadow:0 10px 20px rgba(0,0,0,0.1);}
     h1 {font-size:2rem; color:#e63946; margin-bottom:20px;}
     .puzzle {margin:20px 0; padding:20px; border:2px dashed #e63946; border-radius:15px;}
@@ -15,6 +15,9 @@
     button:hover {background:#d62828;}
     .hidden {display:none;}
     .message {margin-top:20px; font-size:1.3rem; color:#e63946; font-weight:bold;}
+    .hearts {position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; z-index:10;}
+    .heart {position:absolute; color:pink; font-size:20px; animation:fall linear infinite;}
+    @keyframes fall {from { transform: translateY(-10%); opacity:1; } to { transform: translateY(110vh); opacity:0; }}
     @media(max-width:768px){h1{font-size:1.6rem;} .container{padding:20px;} input,button{font-size:1rem; padding:10px;}}
     @media(max-width:480px){h1{font-size:1.4rem;} .message{font-size:1.1rem;}}
   </style>
@@ -36,9 +39,9 @@
     </div>
 
     <div id="puzzle3" class="puzzle hidden">
-      <p>Complete: Eu amo o ______</p>
+      <p>Complete: Eu amo a ______</p>
       <input type="text" id="answer3" placeholder="Digite aqui...">
-      <button onclick="checkAnswer(3, 'Lz')">Enviar</button>
+      <button onclick="checkAnswer(3, 'Eduarda')">Enviar</button>
     </div>
 
     <div id="puzzle4" class="puzzle hidden">
@@ -47,7 +50,6 @@
       <button onclick="checkAnswer(4, 'vermelho')">Enviar</button>
     </div>
 
-    <!-- Novo Puzzle 5 -->
     <div id="puzzle5" class="puzzle hidden">
       <p>Qual sua música favorita?</p>
       <input type="text" id="answer5" placeholder="Digite aqui...">
@@ -59,6 +61,8 @@
     </div>
   </div>
 
+  <div class="hearts" id="hearts"></div>
+
   <script>
     function checkAnswer(puzzle, correct) {
       let input = document.getElementById("answer" + puzzle).value.trim().toLowerCase();
@@ -68,9 +72,22 @@
           document.getElementById("puzzle" + (puzzle + 1)).classList.remove("hidden");
         } else {
           document.getElementById("finalMessage").classList.remove("hidden");
+          startHearts();
         }
       } else {
         alert("Tente novamente 💡");
+      }
+    }
+
+    function startHearts(){
+      const heartsDiv = document.getElementById('hearts');
+      for(let i=0;i<30;i++){
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.innerText = '❤';
+        h.style.left = Math.random()*100+'%';
+        h.style.animationDuration = (5+Math.random()*5)+'s';
+        heartsDiv.appendChild(h);
       }
     }
   </script>
