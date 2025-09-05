@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Eduarda 💖</title>
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+    body {background: linear-gradient(135deg, #ff9a9e, #fad0c4); color:#333; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; text-align:center;}
+    .container {background:white; padding:30px; border-radius:20px; max-width:600px; width:100%; box-shadow:0 10px 20px rgba(0,0,0,0.1);}
+    h1 {font-size:2rem; color:#e63946; margin-bottom:20px;}
+    .puzzle {margin:20px 0; padding:20px; border:2px dashed #e63946; border-radius:15px;}
+    input, button {margin-top:10px; padding:12px; font-size:1rem; border-radius:10px; border:1px solid #ccc; width:100%;}
+    button {background:#e63946; color:white; font-weight:bold; cursor:pointer; transition:0.3s;}
+    button:hover {background:#d62828;}
+    .hidden {display:none;}
+    .message {margin-top:20px; font-size:1.3rem; color:#e63946; font-weight:bold;}
+    @media(max-width:768px){h1{font-size:1.6rem;} .container{padding:20px;} input,button{font-size:1rem; padding:10px;}}
+    @media(max-width:480px){h1{font-size:1.4rem;} .message{font-size:1.1rem;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Eduarda, você é perfeita 💖</h1>
+
+    <div id="puzzle1" class="puzzle">
+      <p>Qual a primeira letra do meu nome?</p>
+      <input type="text" id="answer1" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(1, 'L')">Enviar</button>
+    </div>
+
+    <div id="puzzle2" class="puzzle hidden">
+      <p>Quanto é 2 + 3?</p>
+      <input type="number" id="answer2" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(2, '5')">Enviar</button>
+    </div>
+
+    <div id="puzzle3" class="puzzle hidden">
+      <p>Complete: Eu amo o ______</p>
+      <input type="text" id="answer3" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(3, 'Lz')">Enviar</button>
+    </div>
+
+    <div id="puzzle4" class="puzzle hidden">
+      <p>Qual cor representa o amor?</p>
+      <input type="text" id="answer4" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(4, 'vermelho')">Enviar</button>
+    </div>
+
+    <!-- Novo Puzzle 5 -->
+    <div id="puzzle5" class="puzzle hidden">
+      <p>Qual sua música favorita?</p>
+      <input type="text" id="answer5" placeholder="Digite aqui...">
+      <button onclick="checkAnswer(5, 'Poesia Acustica 12')">Enviar</button>
+    </div>
+
+    <div id="finalMessage" class="message hidden">
+      🎉 Eduarda, você é incrível, perfeita e o amor da minha vida 💕
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer(puzzle, correct) {
+      let input = document.getElementById("answer" + puzzle).value.trim().toLowerCase();
+      if (input === correct.toLowerCase()) {
+        document.getElementById("puzzle" + puzzle).classList.add("hidden");
+        if (puzzle < 5) {
+          document.getElementById("puzzle" + (puzzle + 1)).classList.remove("hidden");
+        } else {
+          document.getElementById("finalMessage").classList.remove("hidden");
+        }
+      } else {
+        alert("Tente novamente 💡");
+      }
+    }
+  </script>
+</body>
+</html>
